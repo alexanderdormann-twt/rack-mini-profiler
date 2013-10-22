@@ -25,7 +25,7 @@
               <th class="profiler-duration-with-children">with children (ms)</th>
               <th class="time-from-start">from start (ms)</th>
             {{if HasSqlTimings}}
-              <th colspan="2">query time (ms)</th>
+              <th colspan="2">API time (ms)</th>
             {{/if}}
             {{each CustomTimingNames}}
               <th colspan="2">${$value.toLowerCase()} (ms)</th>
@@ -44,9 +44,9 @@
                 <a class="profiler-toggle-duration-with-children" title="toggles column with aggregate child durations">show time with children</a>
               </td>
             {{if HasSqlTimings}}
-              <td colspan="2" class="profiler-number profiler-percent-in-sql" title="${MiniProfiler.getSqlTimingsCount(Root)} queries spent ${MiniProfiler.formatDuration(DurationMillisecondsInSql)} ms of total request time">
+              <td colspan="2" class="profiler-number profiler-percent-in-sql" title="${MiniProfiler.getSqlTimingsCount(Root)} API queries spent ${MiniProfiler.formatDuration(DurationMillisecondsInSql)} ms of total request time">
                 ${MiniProfiler.formatDuration(DurationMillisecondsInSql / DurationMilliseconds * 100)}
-                <span class="profiler-unit">% in sql</span>
+                <span class="profiler-unit">% in API</span>
               </td>
             {{/if}}
             {{each CustomTimingNames}}
@@ -153,7 +153,7 @@
     <td class="profiler-duration {{if timing.HasDuplicateSqlTimings}}profiler-warning{{/if}}" title="{{if timing.HasDuplicateSqlTimings}}duplicate queries detected - {{/if}}{{if timing.ExecutedReaders > 0 || timing.ExecutedScalars > 0 || timing.ExecutedNonQueries > 0}}${timing.ExecutedReaders} reader, ${timing.ExecutedScalars} scalar, ${timing.ExecutedNonQueries} non-query statements executed{{/if}}">
       <a class="profiler-queries-show">
         {{if timing.HasDuplicateSqlTimings}}<span class="profiler-nuclear">!</span>{{/if}}
-        ${timing.SqlTimings.length} <span class="profiler-unit">sql</span>
+        ${timing.SqlTimings.length} <span class="profiler-unit">API</span>
       </a>
     </td>
     <td class="profiler-duration" title="aggregate duration of all queries in this step (excludes children)">
@@ -200,7 +200,7 @@
     </td>
     <td>
       <div class="query">
-        <pre class="profiler-stack-trace">${s.StackTraceSnippet}</pre>
+        <!--<pre class="profiler-stack-trace">${s.StackTraceSnippet}</pre>-->
         <pre class="prettyprint lang-sql"><code>${s.FormattedCommandString}   </code></pre>
       </div>
     </td>
