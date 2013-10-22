@@ -18,9 +18,9 @@ module Rack::MiniProfilerRails
       c.skip_schema_queries = true
     end
 
-    if Rails.env.production?
-      c.authorization_mode = :whitelist
-    end
+    #if Rails.env.production?
+    #  c.authorization_mode = :whitelist
+    #end
 
     if Rails.logger
       c.logger = Rails.logger
